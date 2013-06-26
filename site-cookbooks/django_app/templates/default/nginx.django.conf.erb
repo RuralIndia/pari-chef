@@ -26,19 +26,19 @@ server {
     }
 
     location /static/ {
-        root            /<%= @source_path %>/<%= @name %>;
+        root            <%= @source_path %>/<%= @name %>;
         access_log      off;
         log_not_found   off;
     }
 
     location /robots.txt {
-        root            /<%= @source_path %>/<%= @name %>/static;
+        root            <%= @source_path %>/<%= @name %>/static;
         access_log      off;
         log_not_found   off;
     }
 
     location /favicon.ico {
-        root            /<%= @source_path %>/<%= @name %>/static;
+        root            <%= @source_path %>/<%= @name %>/static;
         access_log      off;
         log_not_found   off;
     }

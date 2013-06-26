@@ -1,11 +1,14 @@
+# hostsfile_entry '127.0.0.1' do
+#   hostname  node["django_app"]["server_name"]
+# end
+
 npm_package "less"
 
-# python_virtualenv "/.venv/#{node["django_app"]["name"]}" do
-#   owner "root"
-#   group "root"
-#   action :create
-#   notifies :run, "bash[install_app]"
-# end
+python_virtualenv "/.venv/#{node["django_app"]["name"]}" do
+  owner "root"
+  group "root"
+  action :create
+end
 
 # bash "install_app" do
 #   cwd node["django_app"]["source_path"]

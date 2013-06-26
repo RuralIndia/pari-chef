@@ -10,7 +10,7 @@
       "modules": ["http_gzip_static_module", "http_ssl_module"]
     }
   },
-  "posgresql": {
+  "postgresql": {
     "password": {
       "postgres": "md59d112bc849c9e18f409dacd4e45898d0"
     }
