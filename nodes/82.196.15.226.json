@@ -10,14 +10,21 @@
       "modules": ["http_gzip_static_module", "http_ssl_module"]
     }
   },
+  "posgresql": {
+    "password": {
+      "postgres": "md59d112bc849c9e18f409dacd4e45898d0"
+    }
+  },
   "run_list": [
     "recipe[apt]",
     "recipe[build-essential]",
     "recipe[git]",
-    "recipe[npm]",
+    "recipe[nodejs]",
     "recipe[nginx::source]",
     "recipe[python::default]",
     "recipe[gunicorn::default]",
     "recipe[supervisor]",
+    "recipe[postgresql::server]",
+    "recipe[django_app]"  
   ]
 }
