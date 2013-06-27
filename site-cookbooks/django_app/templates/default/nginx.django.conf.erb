@@ -1,6 +1,15 @@
-
 upstream <%= @name %> {
     server 127.0.0.1:8000;
+}
+
+server {
+    return 404;
+}
+
+server {
+    listen 80;
+    server_name <%= @server_name_no_www %>;
+    return 301 $scheme://<%= @server_name %>$request_uri;
 }
 
 server {

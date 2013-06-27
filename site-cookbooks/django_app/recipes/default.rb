@@ -42,9 +42,12 @@ end
 
 template "/etc/nginx/sites-enabled/#{node["django_app"]["name"]}" do
     source "nginx.django.conf.erb"
+    server_name = node["django_app"]["server_name"]
+    server_name_no_www = (server_name.start_with? "www.") ? server_name.sub("www.", "") : server_name
     variables({
       :name => node["django_app"]["name"],
-      :server_name => node["django_app"]["server_name"],
+      :server_name => server_name,
+      :server_name_no_www => server_name_no_www,
       :source_path => node["django_app"]["source_path"],
     })
     owner "root"
