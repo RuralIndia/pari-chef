@@ -27,6 +27,10 @@ Vagrant.configure("1") do |config|
         "postgres" => "md59d112bc849c9e18f409dacd4e45898d0"
       }
     },
+    "django_app" => {
+      "settings_module" => "dev",
+      "server_name" => "dev.ruralindiaonline.org"
+    },
     "run_list" => [
       "recipe[apt]",
       "recipe[build-essential]",

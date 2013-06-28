@@ -5,6 +5,7 @@ upstream <%= @name %> {
 server {
     return 404;
 }
+<% if @server_name_no_www.to_s != "" %>
 
 server {
     listen 80;
@@ -12,6 +13,7 @@ server {
     server_name <%= @server_name_no_www %>;
     return 301 $scheme://<%= @server_name %>$request_uri;
 }
+<% end %>
 
 server {
     listen 80;
