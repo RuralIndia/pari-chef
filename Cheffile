@@ -5,6 +5,7 @@ site 'http://community.opscode.com/api/v1'
 
 cookbook 'hostsfile'
 cookbook 'nginx'
+cookbook 'memcached'
 cookbook 'postgresql'
 cookbook 'git'
 cookbook 'runit'

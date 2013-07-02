@@ -27,6 +27,11 @@ Vagrant.configure("1") do |config|
         "postgres" => "md59d112bc849c9e18f409dacd4e45898d0"
       }
     },
+    "memcached" => {
+      "listen" => "127.0.0.1",
+      "user" => "www-data",
+      "group" => "www-data"
+    },
     "django_app" => {
       "debug" => "",
       "settings_module" => "dev",
@@ -42,6 +47,7 @@ Vagrant.configure("1") do |config|
       "recipe[gunicorn::default]",
       "recipe[supervisor]",
       "recipe[postgresql::server]",
+      "recipe[memcached]",
       "recipe[django_app]"
     ]
   }
