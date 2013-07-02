@@ -28,6 +28,7 @@ Vagrant.configure("1") do |config|
       }
     },
     "django_app" => {
+      "debug" => "",
       "settings_module" => "dev",
       "server_name" => "dev.ruralindiaonline.org"
     },

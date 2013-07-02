@@ -34,7 +34,9 @@ supervisor_service "gunicorn_#{node["django_app"]["name"]}" do
   autorestart true
   startretries 10
   redirect_stderr true
-  environment :DJANGO_SETTINGS_MODULE => "#{node["django_app"]["name"]}.settings.#{node["django_app"]["settings_module"]}", :PATH => "/.venv/#{node["django_app"]["name"]}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/vagrant/bin:"
+  environment :DJANGO_DEBUG => node["django_app"]["debug"],
+              :DJANGO_SETTINGS_MODULE => "#{node["django_app"]["name"]}.settings.#{node["django_app"]["settings_module"]}", 
+              :PATH => "/.venv/#{node["django_app"]["name"]}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/vagrant/bin:"
   command "/.venv/#{node["django_app"]["name"]}/bin/gunicorn #{node["django_app"]["name"]}.wsgi:application -c #{node["django_app"]["name"]}.py -p gunicorn.pid"
   directory node["django_app"]["source_path"]
   user "root"
