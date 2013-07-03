@@ -34,7 +34,7 @@ Vagrant.configure("1") do |config|
     },
     "django_app" => {
       "debug" => "",
-      "settings_module" => "dev",
+      "settings_module" => "vagrant",
       "server_name" => "dev.ruralindiaonline.org"
     },
     "run_list" => [
