@@ -4,6 +4,10 @@
 
 npm_package "less"
 
+package "libmemcached-dev" do
+  action :install
+end
+
 python_virtualenv "/.venv/#{node["django_app"]["name"]}" do
   owner "root"
   group "root"

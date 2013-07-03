@@ -31,6 +31,6 @@
     "recipe[supervisor]",
     "recipe[postgresql::server]",
     "recipe[memcached]",
-    "recipe[django_app]"  
+    "recipe[django_app]"
   ]
 }
