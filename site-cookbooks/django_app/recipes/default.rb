@@ -39,6 +39,7 @@ supervisor_service "gunicorn_#{node["django_app"]["name"]}" do
   startretries 10
   redirect_stderr true
   environment :DJANGO_DEBUG => node["django_app"]["debug"],
+              :DJANGO_SECRET_KEY => node["django_app"]["secret_key"],
               :DJANGO_SETTINGS_MODULE => "#{node["django_app"]["name"]}.settings.#{node["django_app"]["settings_module"]}", 
               :PATH => "/.venv/#{node["django_app"]["name"]}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/vagrant/bin:"
   command "/.venv/#{node["django_app"]["name"]}/bin/gunicorn #{node["django_app"]["name"]}.wsgi:application -c #{node["django_app"]["name"]}.py -p gunicorn.pid"
@@ -48,17 +49,17 @@ supervisor_service "gunicorn_#{node["django_app"]["name"]}" do
 end
 
 template "/etc/nginx/sites-enabled/#{node["django_app"]["name"]}" do
-    source "nginx.django.conf.erb"
-    server_name = node["django_app"]["server_name"]
-    server_name_no_www = (server_name.start_with? "www.") ? server_name.sub("www.", "") : nil
-    variables({
-      :name => node["django_app"]["name"],
-      :server_name => server_name,
-      :server_name_no_www => server_name_no_www,
-      :source_path => node["django_app"]["source_path"],
-    })
-    owner "root"
-    group "root"
-    mode "644"
-    notifies :reload, "service[nginx]"
+  source "nginx.django.conf.erb"
+  server_name = node["django_app"]["server_name"]
+  server_name_no_www = (server_name.start_with? "www.") ? server_name.sub("www.", "") : nil
+  variables({
+    :name => node["django_app"]["name"],
+    :server_name => server_name,
+    :server_name_no_www => server_name_no_www,
+    :source_path => node["django_app"]["source_path"],
+  })
+  owner "root"
+  group "root"
+  mode "644"
+  notifies :reload, "service[nginx]"
 end

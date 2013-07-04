@@ -33,7 +33,7 @@ Vagrant.configure("1") do |config|
       "group" => "www-data"
     },
     "django_app" => {
-      "debug" => "",
+      "debug" => "true",
       "settings_module" => "vagrant",
       "server_name" => "dev.ruralindiaonline.org"
     },
