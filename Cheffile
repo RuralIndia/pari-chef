@@ -4,6 +4,7 @@
 site 'http://community.opscode.com/api/v1'
 
 cookbook 'hostsfile'
+cookbook 's3cmd', :git => 'git@github.com:freerobby/s3cmd.git'
 cookbook 'nginx'
 cookbook 'memcached'
 cookbook 'postgresql'

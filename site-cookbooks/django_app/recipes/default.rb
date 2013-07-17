@@ -8,6 +8,14 @@ package "libmemcached-dev" do
   action :install
 end
 
+package "libjpeg-dev" do
+  action :install
+end
+
+package "libpng-dev" do
+  action :install
+end
+
 python_virtualenv "/.venv/#{node["django_app"]["name"]}" do
   owner "root"
   group "root"
@@ -62,4 +70,13 @@ template "/etc/nginx/sites-enabled/#{node["django_app"]["name"]}" do
   group "root"
   mode "644"
   notifies :reload, "service[nginx]"
+end
+
+bash "media_sync" do
+  cwd node["django_app"]["source_path"]
+  code <<-EOH 
+    s3cmd sync --skip-existing s3://pari/media/ pari/static/media/
+    EOH
+  action :run
+
 end

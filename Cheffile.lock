@@ -46,6 +46,13 @@ SITE
       chef_handler (>= 0.0.0)
     yum (2.3.0)
 
+GIT
+  remote: git@github.com:freerobby/s3cmd.git
+  ref: master
+  sha: aa6083fb8477aeec527d0874f4b6f41a00f5b6ed
+  specs:
+    s3cmd (0.0.1)
+
 DEPENDENCIES
   git (>= 0)
   gunicorn (>= 0)
@@ -56,5 +63,6 @@ DEPENDENCIES
   npm (>= 0)
   postgresql (>= 0)
   runit (>= 0)
+  s3cmd (>= 0)
   supervisor (>= 0)
 

@@ -8,7 +8,7 @@ Vagrant.configure("1") do |config|
 
   config.vm.forward_port 80, 4000
 
-  config.vm.share_folder "pari", "/pari", "../pari"
+  #config.vm.share_folder "pari", "/pari", "../pari"
 
   VAGRANT_JSON = {
     "python" => {
@@ -37,6 +37,11 @@ Vagrant.configure("1") do |config|
       "settings_module" => "vagrant",
       "server_name" => "dev.ruralindiaonline.org"
     },
+    "s3cmd" => {
+      "users" => [:root, :vagrant],
+      "aws_access_key_id" => "",
+      "aws_secret_access_key" => ""
+    },
     "run_list" => [
       "recipe[apt]",
       "recipe[build-essential]",
@@ -48,6 +53,7 @@ Vagrant.configure("1") do |config|
       "recipe[supervisor]",
       "recipe[postgresql::server]",
       "recipe[memcached]",
+      "recipe[s3cmd]",
       "recipe[django_app]"
     ]
   }

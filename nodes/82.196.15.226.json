@@ -20,6 +20,10 @@
     "user": "www-data",
     "group": "www-data"
   },
+  "s3cmd" : {
+    "aws_access_key_id": "",
+    "aws_secret_access_key": ""
+  },
   "run_list": [
     "recipe[apt]",
     "recipe[build-essential]",
@@ -31,6 +35,7 @@
     "recipe[supervisor]",
     "recipe[postgresql::server]",
     "recipe[memcached]",
+    "recipe[s3cmd]",
     "recipe[django_app]"
   ]
 }
