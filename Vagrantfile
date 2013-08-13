@@ -16,7 +16,7 @@ Vagrant.configure("1") do |config|
       "install_method" => "source"
     },
     "nginx" => {
-      "version" => "1.2.6",
+      "version" => "1.4.1",
       "default_site_enabled" => false,
       "source" => {
         "modules" => ["http_gzip_static_module", "http_ssl_module"]
