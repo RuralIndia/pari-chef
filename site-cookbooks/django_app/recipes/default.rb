@@ -16,6 +16,14 @@ package "libpng-dev" do
   action :install
 end
 
+package "libxml2-dev" do
+  action :install
+end
+
+package "libxslt1-dev" do
+  action :install
+end
+
 python_virtualenv "/.venv/#{node["django_app"]["name"]}" do
   owner "root"
   group "root"
@@ -48,6 +56,10 @@ supervisor_service "gunicorn_#{node["django_app"]["name"]}" do
   redirect_stderr true
   environment :DJANGO_DEBUG => node["django_app"]["debug"],
               :DJANGO_SECRET_KEY => node["django_app"]["secret_key"],
+              :DJANGO_DB_PASSWORD => node["django_app"]["db_password"],
+              :DJANGO_DB_USER => node["django_app"]["db_user"],
+              :DJANGO_DB_NAME => node["django_app"]["db_name"],
+              :DJANGO_MANDRILL_API_KEY => node["django_app"]["mandrill_api_key"],
               :DJANGO_SETTINGS_MODULE => "#{node["django_app"]["name"]}.settings.#{node["django_app"]["settings_module"]}", 
               :PATH => "/.venv/#{node["django_app"]["name"]}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/vagrant/bin:"
   command "/.venv/#{node["django_app"]["name"]}/bin/gunicorn #{node["django_app"]["name"]}.wsgi:application -c #{node["django_app"]["name"]}.py -p gunicorn.pid -u www-data -g www-data"
