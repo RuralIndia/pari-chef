@@ -70,7 +70,25 @@ supervisor_service "gunicorn_#{node["django_app"]["name"]}" do
   process_name "gunicorn_#{node["django_app"]["name"]}"
 end
 
-template "/etc/nginx/sites-enabled/#{node["django_app"]["name"]}" do
+cookbook_file "#{node["nginx"]["dir"]}/server.key" do
+  owner 'root'
+  group 'root'
+  mode 0600
+end
+
+cookbook_file "#{node["nginx"]["dir"]}/server.crt" do
+  owner 'root'
+  group 'root'
+  mode 0600
+end
+
+cookbook_file "#{node["nginx"]["dir"]}/server.csr" do
+  owner 'root'
+  group 'root'
+  mode 0600
+end
+
+template "#{node["nginx"]["dir"]}/sites-enabled/#{node["django_app"]["name"]}" do
   source "nginx.django.conf.erb"
   server_name = node["django_app"]["server_name"]
   server_name_no_www = (server_name.start_with? "www.") ? server_name.sub("www.", "") : nil
