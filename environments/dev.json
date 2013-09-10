@@ -1,0 +1,17 @@
+{
+  "name": "dev",
+  "description": "dev environment",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "django_app": {
+      "debug": "true",
+      "settings_module": "vagrant",
+      "server_name": "dev.ruralindiaonline.org"
+    }
+  },
+  "override_attributes": {
+  }
+}

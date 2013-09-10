@@ -5,7 +5,7 @@ default["django_app"]["source_path"] = "/pari"
 default["django_app"]["server_name"] = "www.ruralindiaonline.org"
 default["django_app"]["secret_key"] = "etkg=2eey_z6u*3ab9s&thcem(5s9w44s5ma0a12+pvpzs^5mk"
 default["django_app"]["mandrill_api_key"] = "Xo7IEp88tI2JPB1toVZ5gg"
-default["django_app"]["db_password"] = "!abcd1234"
+default["django_app"]["db_password"] = node['postgresql']['password']['postgres']
 default["django_app"]["db_user"] = "postgres"
 default["django_app"]["db_name"] = "pari"
 default["django_app"]["recaptcha_private_key"] = "6LfECucSAAAAAE1r7G5rYZsIJbRo0dfWv69JsAwD"

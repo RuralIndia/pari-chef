@@ -1,0 +1,54 @@
+{
+  "name": "djangoapp",
+  "description": "Webserver for a django app",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "python": {
+      "version": "2.7.3",
+      "install_method": "source"
+    },
+    "nginx": {
+      "version": "1.4.1",
+      "default_site_enabled": false,
+      "source": {
+        "modules": [
+          "http_gzip_static_module",
+          "http_ssl_module"
+        ]
+      }
+    },
+    "postgresql": {
+      "password": {
+        "postgres": "md59d112bc849c9e18f409dacd4e45898d0"
+      }
+    },
+    "memcached": {
+      "listen": "127.0.0.1",
+      "user": "www-data",
+      "group": "www-data"
+    },
+    "s3cmd": {
+      "aws_access_key_id": "",
+      "aws_secret_access_key": ""
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[apt]",
+    "recipe[build-essential]",
+    "recipe[git]",
+    "recipe[nodejs]",
+    "recipe[nginx::source]",
+    "recipe[python]",
+    "recipe[gunicorn]",
+    "recipe[supervisor]",
+    "recipe[postgresql::server]",
+    "recipe[memcached]",
+    "recipe[s3cmd]",
+    "recipe[django_app]"
+  ],
+  "env_run_lists": {
+  }
+}

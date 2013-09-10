@@ -72,4 +72,13 @@ Vagrant.configure("1") do |config|
      end if VAGRANT_JSON['run_list']
   end
 
+  config.vm.provision :chef_client do |chef|
+    chef.chef_server_url = "https://api.opscode.com/organizations/ruralindia"
+    chef.validation_key_path = "#{ENV['HOME']}/.chef/ruralindia-validator.pem"
+    chef.environment = "dev"
+    chef.validation_client_name = "ruralindia-validator"
+    chef.client_key_path = "#{ENV['HOME']}/.chef/manojlds.pem"
+    chef.add_role("djangoapp")
+  end
+
 end
